@@ -9,7 +9,7 @@ const createNewUserService = async (userData: TUserRequest): Promise<TUserRespon
     await userRepository.save(newUser)
 
     const userCreated = userSchemaResponse.parse(newUser) 
-
+   
     return userCreated
 
 }   

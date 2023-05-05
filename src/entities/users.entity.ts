@@ -1,5 +1,6 @@
-import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, DeleteDateColumn, OneToMany } from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, DeleteDateColumn, OneToMany, BeforeInsert, BeforeUpdate } from "typeorm";
 import { Schedule } from "./schedules.entity";
+import * as bcrypt from "bcryptjs"
 
 
 @Entity('users')
@@ -15,7 +16,7 @@ class User {
     email: string
 
     @Column({type: 'boolean', default: false})
-    admin: boolean
+    admin: boolean 
 
     @Column({type: 'varchar', length: 120})
     password: string
@@ -31,6 +32,14 @@ class User {
 
     @OneToMany(() => Schedule, (schedules) => schedules.user)
     schedules: Schedule[]
+
+    @BeforeInsert()
+    @BeforeUpdate()
+    PassHash(){
+        if(this.password){
+            this.password = bcrypt.hashSync(this.password, 10)
+        }
+    }
 
 }
 

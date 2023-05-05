@@ -4,7 +4,7 @@ const userSchemaRequest = z.object({
     name: z.string().max(45),
     email: z.string().email().max(45),
     password: z.string().max(120),
-    admin: z.boolean()
+    admin: z.boolean().default(false)
 })
 
 const userSchemaResponse = userSchemaRequest
