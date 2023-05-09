@@ -28,8 +28,12 @@ const checkTypeUserMiddleware = async(req: Request, res: Response, next: NextFun
             }
 
         }
+        if(!admin && req.baseUrl === '/categories' && req.method === 'POST'){
+            throw new AppError('Insufficient permission', 403)
+        }
+       
 
-        throw new AppError('Invalid signature', 401)
+        throw new AppError('Invalid signature', 401)   
     }
 
     return next()

@@ -6,6 +6,7 @@ import { userRepository } from "../../utils/getRepository";
 const createNewUserService = async (userData: TUserRequest): Promise<TUserResponse> => {
 
     const newUser: User = userRepository.create(userData)
+   
     await userRepository.save(newUser)
 
     const userCreated = userSchemaResponse.parse(newUser) 

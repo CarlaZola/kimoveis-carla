@@ -3,7 +3,7 @@ import { RealEstate } from "./real-estate.entity";
 
 
 @Entity('categories')
-class Category {
+class Category{
 
     @PrimaryGeneratedColumn('increment')
     id: number 
