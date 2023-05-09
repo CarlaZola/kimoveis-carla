@@ -13,13 +13,26 @@ const checkTypeUserMiddleware = async(req: Request, res: Response, next: NextFun
     const { id } = req.params
 
     if(!admin){
-        if(!admin && idUser === +(id)){
-            return next()
+
+        if(!admin && req.baseUrl === '/users'){ 
+
+            if(req.method ==='GET' || req.method === 'DELETE'){
+                throw new AppError('Insufficient permission', 403)
+            }
+
+            if(!admin && idUser === +(id) && req.method === 'PATCH'){
+                return next()
+                
+            }else{
+                throw new AppError('Insufficient permission', 403)
+            }
+
         }
+
         throw new AppError('Invalid signature', 401)
     }
 
-    console.log(req.baseUrl, req.path, req.method)
+    return next()
 }
 
 export {

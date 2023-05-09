@@ -12,12 +12,18 @@ const userSchemaResponse = userSchemaRequest
     .extend({
         id: z.number(),
         createdAt: z.string(),
-        updatedAt: z.string().nullish(),
+        updatedAt: z.string(),
         deletedAt: z.string().nullish()
-    })
+})
+
+const readUsersSchemasResponse = z.array(userSchemaResponse)
+
+const updateUserSchemaRequest = userSchemaRequest.omit({admin: true}).deepPartial()
 
 
 export {
     userSchemaRequest, 
-    userSchemaResponse
+    userSchemaResponse,
+    readUsersSchemasResponse,
+    updateUserSchemaRequest
 }

@@ -25,9 +25,9 @@ class User {
     createdAt: Date | string 
 
     @UpdateDateColumn({type: 'date'})
-    updatedAt: Date | string | null | undefined 
+    updatedAt: Date | string 
 
-    @DeleteDateColumn({type: 'date'})
+    @DeleteDateColumn({type: 'date', nullable: true})
     deletedAt: Date | string | null | undefined
 
     @OneToMany(() => Schedule, (schedules) => schedules.user)
@@ -36,7 +36,9 @@ class User {
     @BeforeInsert()
     @BeforeUpdate()
     PassHash(){
-        if(this.password){
+        const isEncripted = bcrypt.getRounds(this.password)
+        
+        if(!isEncripted){
             this.password = bcrypt.hashSync(this.password, 10)
         }
     }

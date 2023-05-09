@@ -20,7 +20,7 @@ const checkTokenIsValidMiddleware = async(req: Request, res: Response, next: Nex
         }
 
         res.locals.token = {
-            idUSer: +(decoded.sub),
+            idUser: +(decoded.sub),
             admin: decoded.admin
         }
     })
