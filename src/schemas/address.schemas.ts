@@ -8,7 +8,12 @@ const addressSchema = z.object({
     state: z.string().max(2) 
 })
 
+const addressSchemaResponse = addressSchema.extend({
+    id: z.number()
+})
+
 
 export {
-    addressSchema
+    addressSchema,
+    addressSchemaResponse
 }

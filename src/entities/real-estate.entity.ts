@@ -31,7 +31,7 @@ class RealEstate {
     @OneToMany(() => Schedule, (schedules) => schedules.realEstate)
     schedules: Schedule[]
 
-    @ManyToOne(() => Category, (category) => category.realEstate)
+    @ManyToOne(() => Category,  (category) => category.realEstate)
     category: Category
 
 }

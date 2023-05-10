@@ -13,7 +13,6 @@ const checkTypeUserMiddleware = async(req: Request, res: Response, next: NextFun
     const { id } = req.params
 
     if(!admin){
-
         if(!admin && req.baseUrl === '/users'){ 
 
             if(req.method ==='GET' || req.method === 'DELETE'){
@@ -31,8 +30,10 @@ const checkTypeUserMiddleware = async(req: Request, res: Response, next: NextFun
         if(!admin && req.baseUrl === '/categories' && req.method === 'POST'){
             throw new AppError('Insufficient permission', 403)
         }
+        if(!admin && req.baseUrl === '/realEstate' && req.method === 'POST'){
+            throw new AppError('Insufficient permission', 403)
+        }
        
-
         throw new AppError('Invalid signature', 401)   
     }
 

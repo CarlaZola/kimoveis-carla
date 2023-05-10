@@ -24,7 +24,6 @@ const readCategoryAndRealEstateByIdController =  async (req: Request, res: Respo
 
     const categoryAndRealEstates = await readCategoryAndRealEstateByIdService(id)
 
-    console.log(categoryAndRealEstates)
     return res.json(categoryAndRealEstates)
 }
 
