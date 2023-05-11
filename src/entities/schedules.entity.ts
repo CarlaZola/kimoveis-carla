@@ -12,7 +12,7 @@ class Schedule {
     date: Date | string 
 
     @Column({type: 'time'})
-    time: Date | string 
+    hour: string 
 
     @ManyToOne(() => User, (user) => user.schedules)
     user: User
