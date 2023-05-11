@@ -8,18 +8,24 @@ const createNewAddressService = async(realEstateAddress: TRealEstateRequest): Pr
 
     const { street, zipCode, number, city, state }: TAddressRequest = realEstateAddress.address
 
-    const address = number ? await addressRepository.findOne({ where: {
-        street: street,
-        zipCode: zipCode,
-        state: state,
-        city: city,
-        number: number
-    }}) : await addressRepository.findOne({ where: {
-        street: street,
-        zipCode: zipCode,
-        state: state,
-        city: city
-    }})
+    let address: TAddressRequest | null
+
+    if(number){
+        address =  await addressRepository.findOne({ where: {
+                street: street,
+                zipCode: zipCode,
+                state: state,
+                city: city,
+                number: number
+            }})
+    }else{
+        address = await addressRepository.findOne({ where: {
+                street: street,
+                zipCode: zipCode,
+                state: state,
+                city: city
+        }})
+    }
 
     if(address) {
 		throw new AppError('Address already exists', 409)
@@ -28,7 +34,7 @@ const createNewAddressService = async(realEstateAddress: TRealEstateRequest): Pr
     const createNewAddress: Address = addressRepository.create(realEstateAddress.address)  
 
     const newAddress = await addressRepository.save(createNewAddress)
-
+    
     return newAddress
 }
 

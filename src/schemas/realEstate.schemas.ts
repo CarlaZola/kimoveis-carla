@@ -7,10 +7,10 @@ const realEstateSchema = z.object({
     value: z.number().default(0).or(z.string()),
     size: z.number().int().positive(),    
     address: addressSchema,
-    categoryId: z.number(),
+    categoryId: z.number().optional().nullish(),
     sold: z.boolean().default(false),
-    createdAt: z.string(),
-    updatedAt: z.string()
+    createdAt: z.string().or(z.date()),
+    updatedAt: z.string().or(z.date())
 })
 
 const realEstateSchemaRequest = realEstateSchema.omit({id: true, createdAt: true, updatedAt: true})
@@ -20,8 +20,14 @@ const realEstateSchemaResponse = realEstateSchema.omit({categoryId: true}).exten
     address: addressSchemaResponse,   
 })
 
+const readAllRealEstate = z.array(realEstateSchema.extend({
+    address: addressSchemaResponse
+})
+.omit({categoryId: true}))
+
 export {
     realEstateSchema,
     realEstateSchemaRequest,
-    realEstateSchemaResponse
+    realEstateSchemaResponse,
+    readAllRealEstate
 }

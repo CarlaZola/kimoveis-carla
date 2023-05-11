@@ -6,7 +6,7 @@ import { realEstateSchemaResponse } from "../../schemas/realEstate.schemas"
 import { categoryRepository, realEstateRepository } from "../../utils/getRepository"
 import { createNewAddressService } from "../address/createNewAddress.service"
 
-const createNewRealEstateService = async(realEstateData: TRealEstateRequest) => {
+const createNewRealEstateService = async(realEstateData: TRealEstateRequest): Promise<TRealEstateResponse> => {
     
     const createdAddress = await createNewAddressService(realEstateData)
   
@@ -21,7 +21,7 @@ const createNewRealEstateService = async(realEstateData: TRealEstateRequest) => 
     const createdNewRealEstate: RealEstate = realEstateRepository.create({
         ...rest,
         address: createdAddress,
-        category: category
+        category
     })
 
     const returnRealEstate = await realEstateRepository.save(createdNewRealEstate)

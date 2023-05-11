@@ -22,7 +22,7 @@ class RealEstate {
     createdAt: Date | string 
 
     @UpdateDateColumn({type: 'date'})
-    updatedAt: Date | string | null | undefined
+    updatedAt: Date | string 
 
     @OneToOne(() => Address, (address) => address.realEstate)
     @JoinColumn()
