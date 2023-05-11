@@ -5,7 +5,6 @@ import { AppError } from "../errors";
 
 const checkExistsRealEstateByIdMiddleware = async(req: Request, res: Response, next: NextFunction): Promise<Response| void> => {
 
-
     const { realEstateId, ...rest } = req.body
 
     const realEstate: RealEstate | null = await realEstateRepository.findOneBy({id: realEstateId})

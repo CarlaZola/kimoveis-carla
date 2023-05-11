@@ -28,7 +28,7 @@ class User {
     updatedAt: Date | string 
 
     @DeleteDateColumn({type: 'date', nullable: true})
-    deletedAt: Date | string | null | undefined
+    deletedAt?: Date | string | null | undefined
 
     @OneToMany(() => Schedule, (schedules) => schedules.user)
     schedules: Schedule[]

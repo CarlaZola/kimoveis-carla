@@ -33,6 +33,9 @@ const checkTypeUserMiddleware = async(req: Request, res: Response, next: NextFun
         if(!admin && req.baseUrl === '/realEstate' && req.method === 'POST'){
             throw new AppError('Insufficient permission', 403)
         }
+        if(!admin && req.baseUrl === '/schedules' && req.method === 'GET'){
+            throw new AppError('Insufficient permission', 403)
+        }
        
         throw new AppError('Invalid signature', 401)   
     }

@@ -1,8 +1,8 @@
 import { AppError } from "../../errors";
-import { TScheduleRequest } from "../../interfaces/schedules.interfaces";
+import { TScheduleRequest, TScheduleResponse } from "../../interfaces/schedules.interfaces";
 import { realEstateRepository, schedulesRepository, userRepository } from "../../utils/getRepository";
 
-const createNewSchedulesService = async(schedulesData: TScheduleRequest, idUser: number) => {
+const createNewSchedulesService = async(schedulesData: TScheduleRequest, idUser: number): Promise<TScheduleResponse>=> {
 
     const { date, hour, realEstateId } = schedulesData
 

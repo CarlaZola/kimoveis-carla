@@ -1,9 +1,12 @@
 import { z } from "zod";
-import { scheduleSchemaRequest } from "../schemas/schedules.schemas";
+import { createdScheduleResponse, realEstateScheduleResponse, scheduleSchemaRequest } from "../schemas/schedules.schemas";
 
 type TScheduleRequest = z.infer<typeof scheduleSchemaRequest>
-
+type TSchedulesRealEstateResponse = z.infer<typeof realEstateScheduleResponse>
+type TScheduleResponse = z.infer<typeof createdScheduleResponse>
 
 export {
-    TScheduleRequest
+    TScheduleRequest,
+    TSchedulesRealEstateResponse,
+    TScheduleResponse
 }
