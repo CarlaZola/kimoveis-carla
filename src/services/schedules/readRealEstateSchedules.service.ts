@@ -1,5 +1,3 @@
-import { TSchedulesRealEstateResponse } from "../../interfaces/schedules.interfaces"
-import { realEstateScheduleResponse } from "../../schemas/schedules.schemas"
 import { realEstateRepository } from "../../utils/getRepository"
 
 const readRealEstateScheduleService = async(idRealEstate: string) => {

@@ -3,14 +3,14 @@ import { createNewRealEstateController, readAllRealEstatesController } from "../
 import { checkBodyIsValidMiddleware } from "../middlewares/checkBodyIsValid.middleware";
 import { realEstateSchemaRequest } from "../schemas/realEstate.schemas";
 import { checkTokenIsValidMiddleware } from "../middlewares/checkTokenIsValid.middleware";
-import { checkTypeUserMiddleware } from "../middlewares/checkTypeUser.middleware";
+import { checkUserIsAdminMiddleware } from "../middlewares/checkUserIsAdmin.middleware";
 
 const realEstateRoutes: Router = Router()
 
 
 realEstateRoutes.post('',
 checkTokenIsValidMiddleware,
-checkTypeUserMiddleware,
+checkUserIsAdminMiddleware,
 checkBodyIsValidMiddleware(realEstateSchemaRequest),
 createNewRealEstateController
 )

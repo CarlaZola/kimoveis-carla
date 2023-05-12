@@ -1,4 +1,3 @@
-import { createQueryBuilder } from "typeorm"
 import { Category } from "../../entities"
 import { TCategoryAndRealEstatesResponses } from "../../interfaces/categories.interfaces"
 import { categoryAndRealEstatesSchemaResponse } from "../../schemas/categories.schemas"

@@ -1,8 +1,6 @@
 import { Category, RealEstate } from "../../entities"
 import { AppError } from "../../errors"
 import { TRealEstateRequest, TRealEstateResponse } from "../../interfaces/realEstate.interfaces"
-import { addressSchema } from "../../schemas/address.schemas"
-import { realEstateSchemaResponse } from "../../schemas/realEstate.schemas"
 import { categoryRepository, realEstateRepository } from "../../utils/getRepository"
 import { createNewAddressService } from "../address/createNewAddress.service"
 

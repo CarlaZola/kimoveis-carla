@@ -3,16 +3,16 @@ import { checkBodyIsValidMiddleware } from "../middlewares/checkBodyIsValid.midd
 import { categorySchemaRequest } from "../schemas/categories.schemas";
 import { checkCategoryNameExistsMiddleware } from "../middlewares/checkIfCategoryNameExists.middleware";
 import { checkTokenIsValidMiddleware } from "../middlewares/checkTokenIsValid.middleware";
-import { checkTypeUserMiddleware } from "../middlewares/checkTypeUser.middleware";
 import { createNewCategoryController, readAllCategoriesController, readCategoryAndRealEstateByIdController } from "../controllers/categories/categories.controllers";
 import { checkCategoryById } from "../middlewares/checkCategoryById.middleware";
+import { checkUserIsAdminMiddleware } from "../middlewares/checkUserIsAdmin.middleware";
 
 const categoryRoutes: Router = Router()
 
 categoryRoutes.post('', 
 checkBodyIsValidMiddleware(categorySchemaRequest),
 checkTokenIsValidMiddleware,
-checkTypeUserMiddleware,
+checkUserIsAdminMiddleware,
 checkCategoryNameExistsMiddleware,
 createNewCategoryController
 )
